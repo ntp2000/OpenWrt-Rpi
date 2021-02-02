@@ -87,7 +87,7 @@ jobs:
         ../scripts/preset-terminal-tools.sh
         
     - name: SSH connection to Actions
-      uses: p3terx/debugger-action@master
+      uses: P3TERX/ssh2actions@main
 
     - name: Download Package
       id: package
