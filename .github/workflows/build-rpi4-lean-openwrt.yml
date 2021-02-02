@@ -86,9 +86,6 @@ jobs:
         ../scripts/preset-clash-core.sh armv8
         ../scripts/preset-terminal-tools.sh
         
-#    - name: SSH connection to Actions
-#      uses: P3TERX/ssh2actions@main
-
     - name: Download Package
       id: package
       run: |
@@ -102,6 +99,9 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+
+#    - name: SSH connection to Actions
+#      uses: P3TERX/ssh2actions@main
 
     - name: Compile Packages
       id: compile
