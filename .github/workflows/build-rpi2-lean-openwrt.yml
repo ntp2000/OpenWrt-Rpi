@@ -100,8 +100,8 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@main
+#    - name: SSH connection to Actions
+#      uses: P3TERX/ssh2actions@main
 
     - name: Compile Packages
       id: compile
