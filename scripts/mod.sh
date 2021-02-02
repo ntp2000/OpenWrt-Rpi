@@ -1,11 +1,14 @@
 #!/bin/bash
 
+cd $OPENWRTROOT
+
 #add obfs-server
-sed  -i -e "s/# CONFIG_PACKAGE_simple-obfs-server is not set/CONFIG_PACKAGE_simple-obfs-server=y/g" .config
+echo "CONFIG_PACKAGE_simple-obfs-server=y" .config
+echo "CONFIG_PACKAGE_simple-obfs=y" .config
 
 
 #fix bonding
-sed  -i -e "s/CONFIG_PACKAGE_kmod-bonding=m/CONFIG_PACKAGE_kmod-bonding=y/g" .config
+echo "CONFIG_PACKAGE_kmod-bonding=y" >> .config
 
 
 pushd target/linux/bcm27xx/patches-5.4/
@@ -51,14 +54,14 @@ popd
 pushd package/setsid
 
 cat > Makefile <<eof
-include $(TOPDIR)/rules.mk
+include \$(TOPDIR)/rules.mk
 
 PKG_NAME:=setsid
 PKG_RELEASE:=1
 
-PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
+PKG_BUILD_DIR := \$(BUILD_DIR)/\$(PKG_NAME)
 
-include $(INCLUDE_DIR)/package.mk
+include \$(INCLUDE_DIR)/package.mk
 
 define Package/setsid
 	SECTION:=utils
@@ -67,25 +70,25 @@ define Package/setsid
 endef
 
 define Build/Prepare
-	mkdir -p $(PKG_BUILD_DIR)
-	$(CP) ./src/* $(PKG_BUILD_DIR)/
+	mkdir -p \$(PKG_BUILD_DIR)
+	\$(CP) ./src/* \$(PKG_BUILD_DIR)/
 endef
 
 define Package/setsid/install
-	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/setsid $(1)/usr/bin/
+	\$(INSTALL_DIR) \$(1)/usr/bin
+	\$(INSTALL_BIN) \$(PKG_BUILD_DIR)/setsid \$(1)/usr/bin/
 endef
 
-$(eval $(call BuildPackage,helloworld))
+\$(eval \$(call BuildPackage,helloworld))
 
 eof
 
 cat > src/Makefile <<eof
 setsid: setsid.o
-	$(CC) $(LDFLAGS) setsid.o -o setsid
+	\$(CC) \$(LDFLAGS) setsid.o -o setsid
 
 setsid.o: setsid.c
-	$(CC) $(CFLAGS) -c setsid.c
+	\$(CC) \$(CFLAGS) -c setsid.c
 
 clean:
 	rm *.o setsid
