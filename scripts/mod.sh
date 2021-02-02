@@ -3,12 +3,11 @@
 cd $OPENWRTROOT
 
 #add obfs-server
-echo "CONFIG_PACKAGE_simple-obfs-server=y" .config
-echo "CONFIG_PACKAGE_simple-obfs=y" .config
+sed  -i -e "s/# CONFIG_PACKAGE_simple-obfs-server is not set/CONFIG_PACKAGE_simple-obfs-server=y/g" .config
 
 
 #fix bonding
-echo "CONFIG_PACKAGE_kmod-bonding=y" >> .config
+sed  -i -e "s/CONFIG_PACKAGE_kmod-bonding=m/CONFIG_PACKAGE_kmod-bonding=y/g" .config
 
 
 pushd target/linux/bcm27xx/patches-5.4/
