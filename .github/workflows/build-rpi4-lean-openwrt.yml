@@ -86,8 +86,8 @@ jobs:
         ../scripts/preset-clash-core.sh armv8
         ../scripts/preset-terminal-tools.sh
         
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@main
+#    - name: SSH connection to Actions
+#      uses: P3TERX/ssh2actions@main
 
     - name: Download Package
       id: package
