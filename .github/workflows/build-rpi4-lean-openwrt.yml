@@ -85,6 +85,9 @@ jobs:
         ../$DIY_SH
         ../scripts/preset-clash-core.sh armv8
         ../scripts/preset-terminal-tools.sh
+        
+    - name: SSH connection to Actions
+      uses: p3terx/debugger-action@master
 
     - name: Download Package
       id: package
