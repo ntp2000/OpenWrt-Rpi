@@ -12,16 +12,17 @@ on:
   repository_dispatch:
     types: [lean, rpi4]
   workflow_dispatch:
-  schedule:
-    - cron: 0 18 * * *
-#  watch:
-#    types: started
+#  schedule:
+#    - cron: 0 18 * * *
+  watch:
+    types: started
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: config/lean/bcm27xx/rpi4-lean-target.config
   DIY_SH: scripts/lean-openwrt.sh
+  MOD_SH: scripts/mod.sh 
   IPV6MOD_IN_FIRMWARE: true
   KMODS_IN_FIRMWARE: true
   UPLOAD_RCLONE: true
@@ -94,6 +95,7 @@ jobs:
             echo "CONFIG_ALL_KMODS=y" >> .config
         fi
         make defconfig
+        ../$MOD_SH
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
