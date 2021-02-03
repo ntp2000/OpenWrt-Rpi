@@ -165,8 +165,8 @@ jobs:
         make checksum
         echo "::set-output name=GENERATE_STATUS::success"
 
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@main
+#    - name: SSH connection to Actions
+#      uses: P3TERX/ssh2actions@main
 
     - name: Upload Bin Folder
       uses: actions/upload-artifact@main
