@@ -78,7 +78,7 @@ define Package/setsid/install
 	\$(INSTALL_BIN) \$(PKG_BUILD_DIR)/setsid \$(1)/usr/bin/
 endef
 
-\$(eval \$(call BuildPackage,helloworld))
+\$(eval \$(call BuildPackage,setsid))
 
 eof
 
