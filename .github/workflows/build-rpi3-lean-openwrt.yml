@@ -172,8 +172,8 @@ jobs:
         name: bin-archive
         path: openwrt/bin
 
-    - name: SSH connection to Actions
-      uses: P3TERX/ssh2actions@main
+#    - name: SSH connection to Actions
+#      uses: P3TERX/ssh2actions@main
         
   Upload:
     needs: [Build]
